@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds" debug="true">
+	
+	<!-- Log 파일 경로 -->
+	<property name="LOG_DIR" value="../mobileServer/logs" />
+	<property name="LOG_STDOUT_PATH" value="${LOG_DIR}/stdout_log" />
+	<property name="LOG_WARN_PATH" value="${LOG_DIR}/warn_log" />
+	<property name="LOG_ERROR_PATH" value="${LOG_DIR}/error_log" />
+	
+	<!-- encoders are  by default assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<maxHistory>10</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} || %-5level || %logger{36} || %line || %M || %msg%n</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<append>true</append>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_STDOUT_PATH}.%d{yyyy-MM-dd}.%i.txt</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>100MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+			<maxHistory>10</maxHistory>
+			<totalSizeCap>1GB</totalSizeCap>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} || %-5level || %logger{36} || %line || %M || %msg%n</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="WARN" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>WARN</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<append>true</append>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_WARN_PATH}.%d{yyyy-MM-dd}.%i.txt</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>100MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+			<maxHistory>10</maxHistory>
+			<totalSizeCap>1GB</totalSizeCap>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} || %-5level || %logger{36} || %line || %M || %msg%n</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<append>true</append>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_ERROR_PATH}.%d{yyyy-MM-dd}.%i.txt</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>100MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+			<maxHistory>10</maxHistory>
+			<totalSizeCap>1GB</totalSizeCap>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} || %-5level || %logger{36} || %line || %M || %msg%n</pattern>
+		</encoder>
+	</appender>
+			
+	<logger name="java.sql" level="WARN" />
+	<logger name="jdbc.audit" level="WARN" />
+	<logger name="jdbc.resultset" level="WARN" />	
+	<logger name="jdbc.sqltiming" level="INFO" />
+	<logger name="jdbc.connection" level="WARN" />
+	<logger name="jdbc.sqlonly" level="WARN" />
+	<logger name="jdbc.resultsettable" level="WARN" />
+		
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="INFO" />
+		<appender-ref ref="WARN" />
+		<appender-ref ref="ERROR" />
+	</root>
+	
+</configuration>

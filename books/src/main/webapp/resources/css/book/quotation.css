@@ -1,0 +1,41 @@
+/*book-comment*/
+.book-container { display: flex; margin-top: 1rem; }
+.book-subject { margin:4rem 0 5rem 0; text-align: center; }
+.book-subject h1 { margin-bottom: 0.5rem; }
+.book-subject .sub { font-size: 1.32875rem; color: #868e96; font-weight: 300;
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";}
+
+.book-comment-list { width: 35%; padding-right: 2rem; }
+.book-comment-list .book-item { position: relative; margin-bottom: 2rem; }
+.book-comment-list .book-item .count { position: absolute; top:8px; right: -8px; padding:0.25rem; font-size:0.85rem; color:#fff; background-color:#7808b7; }
+.book-comment-list .book-item .count:before { content: ""; position: absolute; top: 6px; right: 0px; z-index:-1; width: 50%; height: 100%; background: #7808b7; transform: skewY(-39deg);
+}
+.book-comment-list .book-item figure { width: 100%; height: 0; padding-bottom:140%;
+	font-size: 0.9rem;
+	background-repeat: no-repeat; background-size: 100% 100%; background-position: center;
+	border:1px solid #e1e0e0; border-radius: 0.15rem; box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.1); }
+.book-comment-list .book-item img { display: none; }
+.book-comment-list .book-item .book-subject { margin:0.75rem 0 0.3rem; font-weight:100; }
+.book-comment-list .book-item .book-read-date { color: #868e96;  }
+.book-comment { width: 65%; font-size: 1.25rem; line-height: 1.5em; }
+.book-comment ul {  }
+.book-comment ul li { position: relative; margin-top: 2em; text-indent:3rem; }
+.book-comment ul li:before { content:"\f10d"; position: absolute; top:7px; left:-22px; margin-top:-1rem; margin-right:1rem; font-size:0.75rem; font-family: 'Font Awesome 5 Free'; font-weight:900; }
+/*.book-comment ul li:before { content:"\f3ef"; position: absolute; top:7px; left:-22px; margin-top:-1rem; margin-right:1rem; font-size:0.75rem; font-family: 'Font Awesome 5 Brands'; font-weight:900; }*/
+
+@media (min-width: 700px) {
+	.book-comment-list { width: 25%; }
+	.book-comment { width: 75%; }
+}
+@media (min-width: 900px) {
+	.book-comment-list { display: flex; flex-wrap: wrap; width: 45%; margin-left:-1rem; }
+	.book-comment-list .book-item { width:50%; padding:0 1rem; }
+	.book-comment-list .book-item .count { right:0; }
+	.book-comment { width: 55%; }
+}
+@media (min-width: 1200px) {
+	.book-comment-list .book-item { width:33.33333%; }
+}
+@media (min-width: 1400px) {
+	.book-list .book-item { width: 12.5%;  }
+}
