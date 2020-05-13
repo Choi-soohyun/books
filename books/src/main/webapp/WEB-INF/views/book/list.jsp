@@ -7,7 +7,7 @@
 <html>
 <head>
 	<%@include file="../include/commonHeader.jsp" %>
-	<link href="${cssPath}/book/booklist.css" rel="stylesheet" type="text/css" />
+	<link href="${cssPath}/book/list.css" rel="stylesheet" type="text/css" />
 </head>
 <body>	
 	
@@ -96,11 +96,8 @@
 		
 	</div>
 
-	<div class="toggle-menu-background hidden" id="toggleBackground">
-		
-	</div>
-
-	<script src="${jsPath}/common/common.js" type="text/javascript" charset="utf-8"></script>
+	<%@include file="../include/commonFooter.jsp" %>
+	<script src="${jsPath}/book/list.js" type="text/javascript" charset="utf-8"></script>
 
 </body>
 </html>

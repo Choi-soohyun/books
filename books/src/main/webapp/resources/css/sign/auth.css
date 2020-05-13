@@ -1,0 +1,10 @@
+.page-container { margin:0 auto; padding:2em; min-width: 300px; max-width: 500px;
+	background-color: #fff; }
+.auth-form { display: flex; flex-direction: column; width: 100%; }
+.auth-form label { display: none; }
+.auth-form input { padding: 0.75em 0.5em; 
+		font-size: 1.1rem; text-align: center;
+		border:1px solid #d8dee2; border-radius: 5px; }
+.auth-form input[type='number'] { margin-bottom: 0.25em; }
+.auth-form input[type='submit'] { margin-top: 3em; padding:0.75em 0.5em; border: 0; }
+.auth-form .number-guide { font-size: 0.85rem;  }

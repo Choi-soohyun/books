@@ -8,7 +8,6 @@
 <head>
 	<%@include file="../include/commonHeader.jsp" %>
 	<link href="${cssPath}/book/quotation.css" rel="stylesheet" type="text/css" />
-	<script src="${jsPath}/book/quotation.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 	
@@ -106,14 +105,11 @@
 				</ul>
 			</section>
 		</section>
-
 	</div>
 
-	<div class="toggle-menu-background hidden" id="toggleBackground">
-		
-	</div>
-
-	<script src="${jsPath}/common/common.js" type="text/javascript" charset="utf-8"></script>
+	
+	<%@include file="../include/commonFooter.jsp" %>
+	<script src="${jsPath}/book/quotation.js" type="text/javascript" charset="utf-8"></script>
 
 </body>
 </html>

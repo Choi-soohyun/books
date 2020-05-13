@@ -1,0 +1,15 @@
+body { background-color:#f9f9f9; } 
+.page-container { margin:0 auto; padding:2em; width: 400px; 
+	background-color: #fff; border: 1px solid #d8dee2; border-radius: 5px; }
+.signin-form { display: flex; flex-direction: column; width: 100%; }
+.signin-form label { display: inline; margin-bottom: 0.25em; font-size:0.95rem; font-weight: 500; }
+.signin-form label a.forgot-pw { float: right; font-size: 0.75rem; color: blue; }
+.signin-form input { padding: 0.75em 0.5em; 
+		font-size: 1.1rem;
+		border:1px solid #d8dee2; border-radius: 5px; }
+.signin-form input[type='email'] { margin-bottom: 1em; }
+.signin-form input[type='password'] { margin-bottom: 1em; }
+.signin-form input[type='submit'] { padding:0.75em 0.5em; border: 0; }
+
+.signup { margin: 1rem auto; width: 400px; text-align: center; font-weight:300; }
+.signup a.account { color: blue; }
