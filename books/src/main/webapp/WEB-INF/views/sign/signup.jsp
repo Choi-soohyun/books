@@ -10,6 +10,8 @@
 	<link href="${cssPath}/sign/signup.css" rel="stylesheet" type="text/css" />
 </head>
 <body>	
+
+	<%@include file="../include/navbar.jsp" %>
 	
 	<div class="container">
 		<section class="page-header">
@@ -22,15 +24,16 @@
 				<label for="username">Username</label>
 				<input type="text" name="" id="username">
 				<label for="email">Email address</label>
-				<input type="email" name="" id="email">
+				<input type="email" name="" id="email" class="form-control" autocomplete="off">
 				<label for="password">Password</label>				
 				<input type="password" name="" id="password">
 				<a class="password-guide">Make sure it's at least 15 characters OR at least 8 characters including a number and a lowercase letter.</a>
-				<input type="submit" name="" id="account" value="Create account" disabled="">
+				<input type="button" name="" id="account" value="Create account" disabled>
 			</form>
 		</section>
 	</div>
 	
+	<%@include file="../include/commonFooter.jsp" %>
 	<script src="${jsPath}/sign/signup.js" type="text/javascript" charset="utf-8"></script>
 	
 </body>

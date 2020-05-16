@@ -2,8 +2,17 @@ package kr.co.books.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
+
+import kr.co.books.service.SignService;
+import kr.co.books.util.AJaxResVO;
+import kr.co.books.util.CryptUtil;
+import kr.co.books.vo.SignVO;
 
 /*
  * -----------------------------------------------------------------------------------------------------
@@ -16,10 +25,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 
 @Controller
+@SessionAttributes({"memberVO"})
 @RequestMapping("/sign")
 public class SignController {
-
 	private static final Logger logger = LoggerFactory.getLogger(SignController.class);
+
+	@Autowired
+	private SignService signService;
 	
 	@RequestMapping("/signin")
 	public String signin() {
@@ -32,7 +44,72 @@ public class SignController {
 	}
 	
 	@RequestMapping("/auth")
-	public String quotation() {
+	public String auth() {
 		return "sign/auth";
+	}
+	
+	/***
+	 * 로그인
+	 * @param model
+	 * @param vo
+	 * @return
+	 */
+	@RequestMapping("/login")
+	public @ResponseBody AJaxResVO login(Model model, SignVO vo) {
+		AJaxResVO jRes = new AJaxResVO();
+		try {
+			SignVO resultVO = signService.login(vo);
+			
+			if(resultVO != null) {
+				jRes.setResult("1");
+				model.addAttribute("memberVO", resultVO);
+			} else {
+				jRes.setResult("2");
+			}
+		} catch (Exception e) {
+			jRes.setSuccess(AJaxResVO.SUCCESS_N);
+			logger.error(jRes.toStringResult());
+			logger.error("", e);
+		}
+		return jRes;
+	}
+	
+	@RequestMapping("/join")
+	public @ResponseBody AJaxResVO join(SignVO vo) {
+		AJaxResVO jRes = new AJaxResVO();
+		try {
+			int result = signService.join(vo);
+			
+			if(result > 0) {
+				jRes.setResult("1");
+			} else {
+				jRes.setResult("2");
+				logger.warn(jRes.toStringResult());
+			}
+		} catch (Exception e) {
+			jRes.setSuccess(AJaxResVO.SUCCESS_N);
+			logger.error(jRes.toStringResult());
+			logger.error("", e);
+		}
+		return jRes;
+	}
+	
+	@RequestMapping("/emailCheck")
+	public @ResponseBody AJaxResVO emailCheck(SignVO vo) {
+		AJaxResVO jRes = new AJaxResVO();
+		try {
+			Integer result = signService.emailCheck(vo);
+			
+			if(result == null) {
+				jRes.setResult("1");
+			} else {
+				jRes.setResult("2");
+			}
+		} catch (Exception e) {
+			jRes.setSuccess(AJaxResVO.SUCCESS_N);
+			logger.error(jRes.toStringResult());
+			logger.error("", e);
+		}
+		return jRes;
 	}
 }

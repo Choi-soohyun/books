@@ -10,6 +10,6 @@ body { }
 .signup-form input[type='text'] { margin-bottom: 1em; }
 .signup-form input[type='email'] { margin-bottom: 1em; }
 .signup-form input[type='password'] { margin-bottom: 0.2em; }
-.signup-form input[type='submit'] { margin-top: 2em; padding:0.75em 0.5em; border: 0; }
+.signup-form input[type='button'] { margin-top: 2em; padding:0.75em 0.5em; border: 0; }
 .signup-form input:disabled { opacity: 0.4; }
 .signup-form .password-guide { font-size: 0.85rem;  }

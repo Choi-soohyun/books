@@ -24,6 +24,8 @@ var imagesPath = "${imagesPath}";
 var jsPath = "${jsPath}";
 </script>
 
+<script src="${commResourcePath}/jquery/jquery-2.1.3.min.js"></script>
+
 <link href="${commResourcePath}/fontawesome-free-5.13.0-web/all.css" rel="stylesheet">
 <link href="${commResourcePath}/fontawesome-free-5.13.0-web/brands.css" rel="stylesheet">
 <link href="${cssPath}/common/common.css" rel="stylesheet">

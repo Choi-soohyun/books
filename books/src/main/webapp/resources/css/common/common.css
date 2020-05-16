@@ -58,7 +58,18 @@ button {
 	background: transparent;
 	cursor: pointer;
 }
+.form-control {
+	background-repeat: no-repeat;
+	background-position: right 8px center;
+}
+.is-autocheck-errored {
+	background-image: url('/books/resources/images/error.png');
+}
+.is-autocheck-successful {
+	background-image: url('/books/resources/images/success.png');
+}
 input[type='submit'] { color: #fff; background-color: #1C768F; }
+input[type='button'] { color: #fff; background-color: #1C768F; }
 h1 { 
 	margin-bottom: 0.5rem;
 	font-size: 2.6575rem; 
