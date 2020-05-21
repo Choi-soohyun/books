@@ -5,6 +5,8 @@ import java.util.Random;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import kr.co.books.dao.SignDAO;
@@ -17,31 +19,33 @@ public class SignServiceImpl implements SignService {
 	private static final Logger logger = LoggerFactory.getLogger(SignServiceImpl.class);
 	
 	@Autowired
-	private SignDAO signDao;
+	SignDAO signDao;
 	
-	@Override
-	public SignVO login(SignVO vo) {
-		CryptUtil decrypt = new CryptUtil();
-		SignVO resultVO = signDao.login(vo);
-		try {
-			String currentPw = vo.getPw();
-			String savePw= resultVO.getPw();
-			
-			if(!currentPw.equals(decrypt.decryptAES256(savePw))) {
-				resultVO = null;
-			}
-		} catch (Exception e) {
-			resultVO = null;
-			e.printStackTrace();
-		}
-		return resultVO;
-	}
+//	@Override
+//	public SignVO login(SignVO vo) {
+//		CryptUtil decrypt = new CryptUtil();
+//		SignVO resultVO = signDao.login(vo);
+//		try {
+//			String currentPw = vo.getPw();
+//			String savePw= resultVO.getPw();
+//			
+//			if(!currentPw.equals(decrypt.decryptAES256(savePw))) {
+//				resultVO = null;
+//			}
+//		} catch (Exception e) {
+//			resultVO = null;
+//			e.printStackTrace();
+//		}
+//		return resultVO;
+//	}
 
 	@Override
 	public int join(SignVO vo) {
-		CryptUtil encrypt = new CryptUtil();
+		//CryptUtil encrypt = new CryptUtil();
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		try {
-			vo.setPw(encrypt.encryptAES256(vo.getPw()));
+			//vo.setPw(encrypt.encryptAES256(vo.getPw()));
+			vo.setPw(passwordEncoder.encode(vo.getPw()));
 			vo.setAuth_key(randomNumber());
 		} catch (Exception e) {
 			e.printStackTrace();

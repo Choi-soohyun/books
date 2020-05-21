@@ -12,7 +12,7 @@ import kr.co.books.dao.SignDAO;
 import kr.co.books.util.MybatisLogUtil;
 import kr.co.books.vo.SignVO;
 
-@Repository("SignDao")
+@Repository("signDao")
 public class SignDAOImpl implements SignDAO {
 	private static final Logger logger = LoggerFactory.getLogger(SignDAOImpl.class);
 	
@@ -27,9 +27,14 @@ public class SignDAOImpl implements SignDAO {
 		this.sqlSession = sqlSession;
 	}
 	
+//	@Override
+//	public SignVO login(SignVO vo) {
+//		return sqlSession.selectOne("sign.login", vo);
+//	}
+
 	@Override
-	public SignVO login(SignVO vo) {
-		return sqlSession.selectOne("sign.login", vo);
+	public SignVO memberInfo(String str) {
+		return sqlSession.selectOne("sign.memberInfo", str);
 	}
 
 	@Override
@@ -57,5 +62,6 @@ public class SignDAOImpl implements SignDAO {
 	public int authUpdate(SignVO vo) {
 		return 0;
 	}
+
 	
 }

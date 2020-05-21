@@ -18,13 +18,14 @@
 		</section>
 
 		<section class="page-container">
-			<form class="signin-form">
+			<form class="signin-form" action="loginProcess" method="POST">
 				<label for="email">Email address</label>
-				<input type="email" name="" id="email">
+				<input type="email" name="email" id="email">
 				<label for="password">Password
 					<a href="#" class="forgot-pw">Forgot password?</a>
 				</label>				
-				<input type="password" name="" id="password">
+				<input type="password" name="password" id="password">
+				<input type="hidden" name="books-remember" value="on" />
 				<input type="submit" name="" id="signin" value="Sign in">
 			</form>
 		</section>

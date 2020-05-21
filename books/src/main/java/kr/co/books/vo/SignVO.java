@@ -1,6 +1,11 @@
 package kr.co.books.vo;
 
+import java.util.Collection;
 import java.util.Date;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.SpringSecurityCoreVersion;
+import org.springframework.security.core.userdetails.User;
 
 public class SignVO {
 	private Integer mem_id;
@@ -11,7 +16,8 @@ public class SignVO {
 	private Date auth_valid_date;
 	private Integer auth_flag;
 	private Integer valid;
-	
+	private Collection<? extends GrantedAuthority> authorities; // Security
+
 	public String getEmail() {
 		return email;
 	}
@@ -60,5 +66,10 @@ public class SignVO {
 	public void setUser_name(String user_name) {
 		this.user_name = user_name;
 	}
-	
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
+	}
+	public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
+		this.authorities = authorities;
+	}
 }

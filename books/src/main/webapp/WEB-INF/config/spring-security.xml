@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<http pattern="/common/**" security="none"/>
+	<http pattern="/js/**" security="none"/>
+    <http pattern="/css/**" security="none"/>
+    <http pattern="/images/**" security="none"/>
+    <http pattern="/resources/**" security="none"/>
+  
+	<http auto-config="true" use-expressions="true">
+		<intercept-url pattern="/sign" access="permitAll" />
+		<intercept-url pattern="/sign/**" access="permitAll" />
+		<intercept-url pattern="/sign/signin" access="permitAll" />
+		<intercept-url pattern="/sign/signup" access="permitAll" />
+		<intercept-url pattern="/**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
+		
+		<form-login login-page="/sign/signin"
+			login-processing-url="/sign/loginProcess"
+			authentication-success-handler-ref="loginSuccessHandler"
+			authentication-failure-handler-ref="loginFailureHandler"
+			username-parameter="email" 
+			password-parameter="password" />
+		<logout logout-url="/sign/logout" delete-cookies="JSESSIONID,SPRING_SECURITY_REMEMBER_ME_COOKIE" success-handler-ref="logoutSuccessHandler"/>
+		
+		<remember-me  
+		   key="books" 
+		   remember-me-parameter="books-remember"
+		   remember-me-cookie="books"
+		   token-validity-seconds="31536000"/>
+		   
+		<csrf disabled="true"/>
+	</http>
+	
+	<beans:bean id="logoutSuccessHandler" class="kr.co.books.common.login.LogoutSuccessHandler"></beans:bean>
+		
+	<beans:bean id="loginSuccessHandler" class="kr.co.books.common.login.LoginSuccessHandler">
+		<beans:constructor-arg index="0" ref="loginService" />
+	</beans:bean>
+	
+	<beans:bean id="loginFailureHandler" class="kr.co.books.common.login.LoginFailureHandler">
+		<beans:constructor-arg index="0" ref="loginService" />
+	</beans:bean>
+	
+	<beans:bean id="loginService" class="kr.co.books.common.login.service.LoginService">
+	</beans:bean>
+	
+	<authentication-manager>
+		<authentication-provider user-service-ref="loginService">
+			<password-encoder hash="bcrypt" />
+		</authentication-provider>
+	</authentication-manager>
+
+</beans:beans> 

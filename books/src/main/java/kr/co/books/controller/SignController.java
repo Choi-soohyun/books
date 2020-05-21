@@ -49,30 +49,30 @@ public class SignController {
 	}
 	
 	/***
-	 * 로그인
+	 * 로그인 -> Spring Security로 변경 
 	 * @param model
 	 * @param vo
 	 * @return
 	 */
-	@RequestMapping("/login")
-	public @ResponseBody AJaxResVO login(Model model, SignVO vo) {
-		AJaxResVO jRes = new AJaxResVO();
-		try {
-			SignVO resultVO = signService.login(vo);
-			
-			if(resultVO != null) {
-				jRes.setResult("1");
-				model.addAttribute("memberVO", resultVO);
-			} else {
-				jRes.setResult("2");
-			}
-		} catch (Exception e) {
-			jRes.setSuccess(AJaxResVO.SUCCESS_N);
-			logger.error(jRes.toStringResult());
-			logger.error("", e);
-		}
-		return jRes;
-	}
+//	@RequestMapping("/login")
+//	public @ResponseBody AJaxResVO login(Model model, SignVO vo) {
+//		AJaxResVO jRes = new AJaxResVO();
+//		try {
+//			SignVO resultVO = signService.login(vo);
+//			
+//			if(resultVO != null) {
+//				jRes.setResult("1");
+//				model.addAttribute("memberVO", resultVO);
+//			} else {
+//				jRes.setResult("2");
+//			}
+//		} catch (Exception e) {
+//			jRes.setSuccess(AJaxResVO.SUCCESS_N);
+//			logger.error(jRes.toStringResult());
+//			logger.error("", e);
+//		}
+//		return jRes;
+//	}
 	
 	@RequestMapping("/join")
 	public @ResponseBody AJaxResVO join(SignVO vo) {
